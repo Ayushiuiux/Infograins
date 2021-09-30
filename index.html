@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infograins</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS file -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- owl slider -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <!-- chatbpt css file -->
+    <link rel="stylesheet" href="assets/css/jquery.convform.css">
+    <!-- font awesome icon -->
+    <link rel="stylesheet" href="assets/css/all.css">
+    <!-- Custom CSS file -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .navbar .nav-item span b {
+            z-index: 999;
+            position: relative;
+        }
+
+        .navbar .nav-item.active {
+            /* display: inline-block;
+            position: absolute;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            transition-duration: 0.6s;
+            transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55); */
+            background-color: #ef6e10;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .navbar .nav-item.active::after,
+        .navbar .nav-item.active::before {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: #ef6e10;
+            bottom: 0;
+        }
+
+        .navbar .nav-item.active::after {
+            right: -25px;
+        }
+
+        .navbar .nav-item.active::before {
+            left: -25px;
+        }
+
+        /* .hori-selector .right:before,
+        .hori-selector .left:before  */
+        .navbar .nav-item.active span::after,
+        .navbar .nav-item.active span::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .navbar .nav-item.active span::after {
+            bottom: 0;
+            right: -50px;
+            z-index: 9;
+        }
+
+        .navbar .nav-item.active span::before {
+            bottom: 0;
+            left: -50px;
+        }
+    </style>
+    <style>
+        .popup_video .modal-content {
+            padding: 0 !important;
+            position: relative;
+        }
+
+        .popup_video iframe {
+            width: 100%;
+            height: 380px;
+        }
+
+        .popup-btn {
+            border: 0;
+            box-shadow: 0 0 10px 0 rgb(0 0 0 / 40%);
+            padding: 0;
+            border-radius: 5px !important;
+            overflow: hidden;
+            width: 250px;
+            margin: 10px auto;
+            display: block;
+        }
+
+        .popup_video .modal-body {
+            padding: 0;
+        }
+
+        .popup_video_close {
+            position: absolute;
+            color: #fff;
+            filter: invert(100%);
+            left: -30px;
+            top: -8px;
+            opacity: 1;
+        }
+
+        .client-slider {
+            position: relative;
+        }
+
+        /* .client-slider .owl-nav {
+            position: absolute;
+            width: 100%;
+            top: 45%;
+            left: 0;
+            margin: 0;
+        } */
+        .client_review p {
+            min-height: 200px;
+            height: 100% !important;
+        }
+
+        .client-slider .owl-nav .owl-prev {
+            position: absolute;
+            /* width: 100%; */
+            top: 45%;
+            left: -10px;
+            margin: 0;
+        }
+
+        .client-slider .owl-nav .owl-next {
+            position: absolute;
+            /* width: 100%; */
+            top: 45%;
+            right: -10px;
+            margin: 0;
+        }
+
+        .client-slider .owl-nav .owl-next span,
+        .client-slider .owl-nav .owl-prev span {
+            font-size: 30px;
+            color: #fff;
+            /* border: 1px solid #ef6e10; */
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-block;
+            background: #ef6e10b8;
+            box-shadow: 0 0 10px 0 rgb(0 0 0 / 50%);
+        }
+
+        .client-slider .owl-nav [class*=owl-]:hover {
+            background: #ef6e10;
+            border-radius: 50%;
+        }
+    </style>
+    <style>
+        .bot_chat {
+            /* box-shadow: 0 0 10px 0 rgb(0 0 0 / 50%); */
+            background: #fbfbfb;
+            position: relative;
+            padding: 0;
+            min-height: 75vh;
+            transition: height 9999s;
+        }
+
+        
+        .card {
+            background: #fff;
+            box-shadow: 13px 13px 28px 2px rgba(0, 0, 0, 0.035);
+            /* padding: 7px 15px; */
+        }
+
+        .live_chat {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+        }
+
+        .live_chat .chat-btn {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            cursor: pointer;
+            width: 65px;
+            height: 65px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100px 100px 0px 100px;
+            background-color: #ef6e10;
+            color: #fff;
+            font-size: 22px;
+            border: none;
+            box-shadow: 0 0 9px 2px rgb(0 0 0 / 60%);
+        }
+
+        .live_chat .chat-btn .close {
+            display: none
+        }
+
+        .live_chat .chat-btn .font_icon {
+            transition: all 0.9s ease
+        }
+
+        .live_chat #check:checked~.chat-btn .font_icon {
+            display: block;
+            pointer-events: auto;
+            transform: rotate(180deg)
+        }
+
+        .live_chat #check:checked~.chat-btn .comment {
+            display: none
+        }
+
+        .live_chat .chat-btn .font_icon {
+            font-size: 28px;
+            color: #fff !important
+        }
+
+        .live_chat .wrapper {
+            position: absolute;
+            right: 20px;
+            bottom: 70px;
+            width: 380px;
+            background-color: #fff;
+            border-radius: 5px;
+            opacity: 0;
+            display: none;
+            transition: all 0.4s;
+            box-shadow: 0 0 10px 0 rgb(0 0 0 / 50%);
+        }
+
+        .live_chat #check:checked~.wrapper {
+            opacity: 1;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- navbar strat here -->
+    <header class="top_nav">
+        <div class="container">
+            <div class="top_nav_box">
+                <ul class="list-inline mb-0 top_left_nav">
+                    <li class="list-inline-item">
+                        <a href="tel:9770477239"> <i class="fas fa-phone-alt"></i> +91 9770477239</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="tel:9713406272"> <i class="fas fa-phone-alt"></i> +91 9713406272</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="mailto:info@infograins.com"> <i class="far fa-envelope"></i> info@infograins.com</a>
+                    </li>
+                </ul>
+                <ul class="list-inline ms-auto mb-0 top_right_nav">
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/infograins/" target="_blank"><i
+                                class="fab fa-facebook-f font_icon"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://www.instagram.com/infograins/" target="_blank"><i
+                                class="fab fa-instagram font_icon"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://www.linkedin.com/company/infograin-software-solutions/" target="_blank"><i
+                                class="fab fa-linkedin-in font_icon"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://www.twitter.com/infograins/" target="_blank"><i
+                                class="fab fa-twitter font_icon"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://www.linkedin.com/infograins/" target="_blank"><i
+                                class="fab fa-telegram-plane font_icon"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="javascript:;" target="_blank"><i class="fab fa-skype font_icon "></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <nav id="navbar_top" class="navbar navbar-expand-custom navbar-mainbg navbar-expand-lg navbar-fixed-top">
+        <div class="container">
+            <a class="navbar-brand navbar-logo cmpny_logo" href="index.html">
+                <img src="assets/images/logo.png" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars nav_icon"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                    <!-- <div class="hori-selector">
+                        <div class="left"></div>
+                        <div class="right"></div>
+                    </div> -->
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html#company_service">
+                            <span>
+                                <b>Company</b>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">
+                            <span>
+                                <b>Services</b>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="product.html">
+                            <span>
+                                <b>Products</b>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blockchain.html">
+                            <span>
+                                <b>Blockchain</b>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resource.html">
+                            <span>
+                                <b>Resources</b>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">
+                            <span>
+                                <b>Blog</b>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact_us.html">
+                            <span>
+                                <b> ContactUs</b>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- navbar close here -->
+
+    <!-- banner section start here -->
+    <div class="banner-wrap">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="assets/images/banner1.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/images/banner2.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/images/banner3.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="shape">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 280">
+                <path fill="#ffffff" fill-opacity="1">
+                    <animate attributeName="d" dur="20000ms" repeatCount="indefinite"
+                        values="M0,160L48,181.3C96,203,192,245,288,261.3C384,277,480,267,576,234.7C672,203,768,149,864,117.3C960,85,1056,75,1152,90.7C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z; M0,160L48,181.3C96,203,192,245,288,234.7C384,224,480,160,576,133.3C672,107,768,117,864,138.7C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;												 M0,64L48,74.7C96,85,192,107,288,133.3C384,160,480,192,576,170.7C672,149,768,75,864,80C960,85,1056,171,1152,181.3C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
+                                                 M0,160L48,181.3C96,203,192,245,288,261.3C384,277,480,267,576,234.7C672,203,768,149,864,117.3C960,85,1056,75,1152,90.7C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;" />
+
+                </path>
+
+            </svg>
+        </div>
+    </div>
+    <!-- banner section close here -->
+
+    <!-- company profile section start here -->
+    <section class="compy_section" id="company_service">
+        <div class="container">
+            <div class="row">
+                <div class="column col-lg-4 col-md-6 col-sm-12 col-12">
+                    <div class="page_cmp_heading cmpny_busns">
+                        <p>Boost Your Business Profile</p>
+                        <h2><span>Infograins</span> Software Solutions</h2>
+                    </div>
+
+                    <div class="cmpny_busns cmp_business_box">
+                        <div class="inner_box">
+                            <div class="icon_outer">
+                                <span class="icon_bg"></span>
+                                <div class="icon_box">
+                                    <img src="assets/images/service_icon/defi.png" class="img-fluid" alt="" title="">
+                                </div>
+                            </div>
+                            <h3 class="cmp_Serv_name"> <a href="javascript:;"> Decentralized Finance (DEFI) </a> </h3>
+                            <div class="text">
+                                DeFi, or decentralized finance, is a new way to execute financial transactions through
+                                applications.
+                            </div>
+                            <div class="more_link">
+                                <a href="javascript:;">
+                                    <span class="fa fa-arrow-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cmpny_busns cmp_business_box">
+                        <div class="inner_box">
+                            <div class="icon_outer">
+                                <span class="icon_bg"></span>
+                                <div class="icon_box">
+                                    <img src="assets/images/service_icon/Ar_vr.png" class="img-fluid" alt="" title="">
+                                </div>
+                            </div>
+                            <h3 class="cmp_Serv_name"> <a href="javascript:;"> AR & VR </a> </h3>
+                            <div class="text">
+                                (VR) enables you to fully immerse yourself in a computer-simulated reality.(AR) on the
+                                other hand adds a virtual layer to the real world.
+                            </div>
+                            <div class="more_link">
+                                <a href="javascript:;">
+                                    <span class="fa fa-arrow-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cmpny_busns cmp_business_box">
+                        <div class="inner_box">
+                            <div class="icon_outer">
+                                <span class="icon_bg"></span>
+                                <div class="icon_box">
+                                    <img src="assets/images/service_icon/WebDeveopment.png" class="img-fluid" alt=""
+                                        title="">
+                                </div>
+                            </div>
+                            <h3 class="cmp_Serv_name"> <a href="javascript:;"> Website development services </a> </h3>
+                            <div class="text">
+                                Web development is the work involved in developing a Web site for the Internet (​World
+                                Wide Web).
+                            </div>
+                            <div class="more_link">
+                                <a href="javascript:;">
+                                    <span class="fa fa-arrow-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column col-lg-4 col-md-6 col-sm-12 col-12">
+                    <div class="cmpny_busns cmp_business_box">
+                        <div class="inner_box">
+                            <div class="icon_outer">
+                                <span class="icon_bg"></span>
+                                <div class="icon_box">
+                                    <img src="assets/images/service_icon/PublicBlockchain.png" class="img-fluid" alt=""
+                                        title="">
+                                </div>
+                            </div>
+                            <h3 class="cmp_Serv_name"> <a href="javascript:;"> Public Blockchain </a> </h3>
+                            <div class="text">
+                                A public blockchain is decentralized and does not have a single entity which controls
+                                the network.
+                            </div>
+                            <div class="more_link">
+                                <a href="javascript:;">
+                                    <span class="fa fa-arrow-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cmpny_busns cmp_business_box">
+                        <div class="inner_box">
+                            <div class="icon_outer">
+                                <span class="icon_bg"></span>
+                                <div class="icon_box">
+                                    <img src="assets/images/service_icon/nft.png" class="img-fluid" alt="" title="">
+                                </div>
+                            </div>
+                            <h3 class="cmp_Serv_name"> <a href="javascript:;"> Non Fungible Token (NFT) </a> </h3>
+                            <div class="text">
+                                A non-fungible token (NFT) is a unit of data stored on a digital ledger, called a
+                                blockchain.
+                            </div>
+                            <div class="more_link">
+                                <a href="javascript:;">
+                                    <span class="fa fa-arrow-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cmpny_busns cmp_business_box">
+                        <div class="inner_box">
+                            <div class="icon_outer">
+                                <span class="icon_bg"></span>
+                                <div class="icon_box">
+                                    <img src="assets/images/service_icon/iot.png" class="img-fluid" alt="" title="">
+                                </div>
+                            </div>
+                            <h3 class="cmp_Serv_name"> <a href="javascript:;"> IOT </a> </h3>
+                            <div class="text">
+                                IoT devices contain sensors and mini-computer processors that act on the data collected
+                                by the sensors via machine learning.
+                            </div>
+                            <div class="more_link">
+                                <a href="javascript:;">
+                                    <span class="fa fa-arrow-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cmpny_busns cmp_business_box">
+                        <div class="inner_box">
+                            <div class="icon_outer">
+                                <span class="icon_bg"></span>
+                                <div class="icon_box">
+                                    <img src="assets/images/service_icon/SoftwareDeveopment.png" class="img-fluid"
+                                        alt="" title="">
+                                </div>
+                            </div>
+                            <h3 class="cmp_Serv_name"> <a href="javascript:;"> Software development services </a> </h3>
+                            <div class="text">
+                                Software development is the process programmers use to build computer programs.
+                            </div>
+                            <div class="more_link">
+                                <a href="javascript:;">
+                                    <span class="fa fa-arrow-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="cmpny_busns cmp_business_box">
+                        <div class="inner_box">
+                            <div class="icon_outer">
+                                <span class="icon_bg"></span>
+                                <div class="icon_box">
+                                    <img src="assets/images/service_icon/PrivateBlockchain.png" class="img-fluid" alt=""
+                                        title="">
+                                </div>
+                            </div>
+                            <h3 class="cmp_Serv_name"> <a href="javascript:;"> Private Blockchain </a> </h3>
+                            <div class="text">
+                                In a public blockchain, anyone can read and write on the ledger. But you can't alter it
+                                once it gets on the ledger.
+                            </div>
+                            <div class="more_link">
+                                <a href="javascript:;">
+                                    <span class="fa fa-arrow-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cmpny_busns cmp_business_box">
+                        <div class="inner_box">
+                            <div class="icon_outer">
+                                <span class="icon_bg"></span>
+                                <div class="icon_box">
+                                    <img src="assets/images/service_icon/Cardano Blockchain.png" class="img-fluid"
+                                        alt="" title="">
+                                </div>
+                            </div>
+                            <h3 class="cmp_Serv_name"> <a href="javascript:;"> Cardano Blockchain </a> </h3>
+                            <div class="text">
+                                Cardano is a proof-of-stake blockchain platform: the first to be founded on
+                                peer-​reviewed research and developed through evidence-based methods.
+                            </div>
+                            <div class="more_link">
+                                <a href="javascript:;">
+                                    <span class="fa fa-arrow-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cmpny_busns cmp_business_box">
+                        <div class="inner_box">
+                            <div class="icon_outer">
+                                <span class="icon_bg"></span>
+                                <div class="icon_box">
+                                    <img src="assets/images/service_icon/MobileDeveopment.png" class="img-fluid" alt=""
+                                        title="">
+                                </div>
+                            </div>
+                            <h3 class="cmp_Serv_name"> <a href="javascript:;"> Mobile app development </a> </h3>
+                            <div class="text">
+                                The Mobile app development process requires creating software that can be installed on
+                                the device.
+                            </div>
+                            <div class="more_link">
+                                <a href="javascript:;">
+                                    <span class="fa fa-arrow-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- company profile section close here -->
+
+
+    <!-- Industries section start here -->
+    <section class="industry_section">
+        <div class="container">
+            <div class="page_heading">
+                <!-- <p></p> -->
+                <h3>Top Industries We Serve</h3>
+            </div>
+            <div class="indsty_box">
+                <p>Infograins has been successfully implemented Blockchain for several industry like Sypply chain,
+                    healthcare, Diamond, Food processing, Music Industry manufacturing, baning Insurance etc.</p>
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6 my-4">
+                        <div class="insdtry_box">
+                            <div class="indsty_icon">
+                                <i class="fas fa-shopping-bag font_icon"></i>
+                            </div>
+                            <h5>Retail & Shopping</h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6 my-4">
+                        <div class="insdtry_box">
+                            <div class="indsty_icon">
+                                <i class="fas fa-university font_icon"></i>
+                            </div>
+                            <h5>Banking, Finance & Insurance</h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6 my-4">
+                        <div class="insdtry_box">
+                            <div class="indsty_icon">
+                                <i class="fas fa-industry font_icon"></i>
+                            </div>
+                            <h5>Industries & Manufacturing</h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6 my-4">
+                        <div class="insdtry_box">
+                            <div class="indsty_icon">
+                                <i class="fas fa-graduation-cap font_icon"></i>
+                            </div>
+                            <h5>Education & Tutoring</h5>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6 my-4">
+                        <div class="insdtry_box">
+                            <div class="indsty_icon">
+                                <i class="fas fa-car font_icon"></i>
+                            </div>
+                            <h5>Travel & Transportation</h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6 my-4">
+                        <div class="insdtry_box">
+                            <div class="indsty_icon">
+                                <i class="far fa-life-ring font_icon"></i>
+                            </div>
+                            <h5>Social Networking & Dating</h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6 my-4">
+                        <div class="insdtry_box">
+                            <div class="indsty_icon">
+                                <i class="fab fa-telegram font_icon"></i>
+                            </div>
+                            <h5>Media & Advertising</h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6 my-4">
+                        <div class="insdtry_box">
+                            <div class="indsty_icon">
+                                <i class="fas fa-building font_icon"></i>
+                            </div>
+                            <h5>Property & Real Estate</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Industries section close here -->
+
+    <!-- counter serctio start here -->
+    <section class="counter_section">
+        <div class="container" id="targetId">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="counter">
+                        <div class="counter-icon">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                        <span class="counter-value">8</span>
+                        <h3>Years of Experienced</h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="counter counter_blue">
+                        <div class="counter-icon">
+                            <i class="fa fa-rocket"></i>
+                        </div>
+                        <span class="counter-value">250</span>
+                        <h3>Happy Clients</h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="counter counter_green">
+                        <div class="counter-icon">
+                            <i class="fa fa-rocket"></i>
+                        </div>
+                        <span class="counter-value">20</span>
+                        <h3>Awards Won</h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="counter counter_purple">
+                        <div class="counter-icon">
+                            <i class="fa fa-rocket"></i>
+                        </div>
+                        <span class="counter-value">50</span>
+                        <h3>Expert Consultant</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- counter serctio close here -->
+
+    <!-- owl carousel slider start here -->
+    <section class="carousel_Slider">
+        <div class="px-4">
+            <div class="page_heading">
+                <p>TESTIMONIES</p>
+                <h3>Happy Clients & Feedbacks</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn popup-btn" data-bs-toggle="modal"
+                                data-bs-target="#client1">
+                                <img src="assets/images/client1.jpg" alt="" class="img-fluid">
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade popup_video" id="client1" tabindex="-1"
+                                aria-labelledby="client1Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <button type="button" class="btn-close popup_video_close"
+                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <div class="modal-body">
+                                            <iframe width="560" height="315"
+                                                src="https://www.youtube.com/embed/sSRUEIsEsew"
+                                                title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn popup-btn" data-bs-toggle="modal"
+                                data-bs-target="#client2">
+                                <img src="assets/images/client2.jpg" alt="" class="img-fluid">
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade popup_video" id="client2" tabindex="-1"
+                                aria-labelledby="client2Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <button type="button" class="btn-close popup_video_close"
+                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <div class="modal-body">
+                                            <iframe width="560" height="315"
+                                                src="https://www.youtube.com/embed/7TP8BEFXS_o"
+                                                title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn popup-btn" data-bs-toggle="modal"
+                                data-bs-target="#client3">
+                                <img src="assets/images/client3.jpg" alt="" class="img-fluid">
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade popup_video" id="client3" tabindex="-1"
+                                aria-labelledby="client3Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <button type="button" class="btn-close popup_video_close"
+                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <div class="modal-body">
+                                            <iframe width="560" height="315"
+                                                src="https://www.youtube.com/embed/YS1E6ob2qIU"
+                                                title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn popup-btn" data-bs-toggle="modal"
+                                data-bs-target="#client4">
+                                <img src="assets/images/client4.jpg" alt="" class="img-fluid">
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade popup_video" id="client4" tabindex="-1"
+                                aria-labelledby="client4Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <button type="button" class="btn-close popup_video_close"
+                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <div class="modal-body">
+                                            <iframe width="560" height="315"
+                                                src="https://www.youtube.com/embed/dJvuZdqNqfo"
+                                                title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="owl-carousel client-slider owl-theme">
+                        <div class="item">
+                            <div class="client_review">
+                                <p>Infograins is one of the leading offshore software development company routed from
+                                    Portland, Oregon USA and having its delivery center in Indore, India.</p>
+                                <div class="client_name">
+                                    <h6 class="mb-0 client_icon"><i class="fas fa-user font_icon"></i></h6>
+                                    <h5 class="mb-0">Darlina</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client_review">
+                                <p>Absolutely the greatest Team on FreeLancer!! After trying out different
+                                    freelancers for the last 3 years I really regret not having found point2solutions
+                                    earlier. I am almost afraid to type all this because I want to keep this team for
+                                    myself. This is now my go to team for all my projects!.</p>
+                                <div class="client_name">
+                                    <h6 class="mb-0 client_icon"><i class="fas fa-user font_icon"></i></h6>
+                                    <h5 class="mb-0">Thiban</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client_review">
+                                <p>Arti and her team at Infograins are amazing to work with and provide
+                                    excellent work. I have been working with them for many months now and they have been
+                                    great since day one, and I plan on working with them more in the future as well as
+                                    recommending other people to them.</p>
+                                <div class="client_name">
+                                    <h6 class="mb-0 client_icon"><i class="fas fa-user font_icon"></i></h6>
+                                    <h5 class="mb-0">Philip</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client_review">
+                                <p>The freelancer was great, he listened to all our problems and help us find a solution
+                                    that works best for everyone. I would definitely work with him again!</p>
+                                <div class="client_name">
+                                    <h6 class="mb-0 client_icon"><i class="fas fa-user font_icon"></i></h6>
+                                    <h5 class="mb-0">Raymond N.</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client_review">
+                                <p>They have a great and responsive team, They help you with new ideas and provide good
+                                    advice for the project I am always happy to work with them in the future and in new
+                                    projects</p>
+                                <div class="client_name">
+                                    <h6 class="mb-0 client_icon"><i class="fas fa-user font_icon"></i></h6>
+                                    <h5 class="mb-0">Dawood J</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client_review">
+                                <p>They are a team very kind and professionals with news ideas and very patient with us
+                                    because we don't know about technology . I appreciate a lot the hard work that they
+                                    did and it is posible that we work in a future projects. Thanks</p>
+                                <div class="client_name">
+                                    <h6 class="mb-0 client_icon"><i class="fas fa-user font_icon"></i></h6>
+                                    <h5 class="mb-0">Marisol S</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client_review">
+                                <p>Working with the team at Infograins was an overall good experience. They are very
+                                    knowledgeable and professional. Their app design skills are awesome! They are
+                                    willing to correct their mistakes until the work is satisfactory. They sometimes
+                                    underestimate the completion time, but if you are willing to wait they can do
+                                    amazing work.</p>
+                                <div class="client_name">
+                                    <h6 class="mb-0 client_icon"><i class="fas fa-user font_icon"></i></h6>
+                                    <h5 class="mb-0">Ryan M</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- owl carousel slider close here -->
+
+    <!-- blog section start here -->
+    <section class="blog_section">
+        <div class="container">
+            <div class="page_heading mb-5">
+                <p>NEWS & BLOG</p>
+                <h3>Latest news from our blog</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="blog_box">
+                        <div class="blog_img">
+                            <img src="assets/images/blog1.jpg" alt="" class="img-fluid">
+                        </div>
+                        <div class="blog_content">
+                            <a href="javascript:;" class="blog_date">January 16, 2021</a>
+                            <a href="javascript:;" class="blog_heading">Writing a Good Essay: Planning Your Essay</a>
+                            <!-- <p>Many students want to be successful with essay writing. They come into college knowing
+                                they need to research, study, and construct their essay nicely.</p> -->
+                            <!-- <a href="javascript:;" class="read_more_btn">Read More</a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="blog_box">
+                        <div class="blog_img">
+                            <img src="assets/images/blog1.jpg" alt="" class="img-fluid">
+                        </div>
+                        <div class="blog_content">
+                            <a href="javascript:;" class="blog_date">January 16, 2021</a>
+                            <a href="javascript:;" class="blog_heading">Enhance Your App Downloads by Shrinking</a>
+                            <!-- <p>Today world, we count on richer content, better images, and extra features from our
+                                mobile apps, and none of this comes at no cost! The memory of your android device has
+                                increased, an app may use an extra space it delivers a bad user experience.</p> -->
+                            <!-- <a href="javascript:;" class="read_more_btn">Read More</a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="blog_box">
+                        <div class="blog_img">
+                            <img src="assets/images/blog2.jpg" alt="" class="img-fluid">
+                        </div>
+                        <div class="blog_content">
+                            <a href="javascript:;" class="blog_date">January 16, 2021</a>
+                            <a href="javascript:;" class="blog_heading">Infograins Block Chain Technology</a>
+                            <!-- <p>In the University of California, San Francisco, They have made a (POC) that is
+                                proof-of-concept technique to make sure that the integrity of data in different clinical
+                                trials utilizing blockchain and Currently, this system creates the immutable audit,</p> -->
+                            <!-- <a href="javascript:;" class="read_more_btn">Read More</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- blog section start here -->
+
+    <!-- owl carousel slider start here -->
+    <!-- <section class="cpmny_section">
+        <div class="container">
+            <div class="owl-carousel cmpny-slider owl-theme">
+                <div class="item">
+                    <div class="company_logos">
+                        <img src="assets/images/c_1.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="company_logos">
+                        <img src="assets/images/c_2.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="company_logos">
+                        <img src="assets/images/c_3.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="company_logos">
+                        <img src="assets/images/c_5.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="company_logos">
+                        <img src="assets/images/c_6.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- owl carousel slider close here -->
+
+    <!-- footer section start here -->
+    <footer class="footer_section">
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="foot foot1">
+                        <h5 class="foot_heading">About Us</h5>
+                        <p>Development Center InfoGrains Software Solutions Pvt. Ltd.</p>
+                        <ul class="list-inline mt-2 mb-0 foot_social_media">
+                            <li class="list-inline-item">
+                                <a href="https://www.facebook.com/infograins/" target="_blank"><i
+                                        class="fab fa-facebook-f font_icon"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.instagram.com/infograins/" target="_blank"><i
+                                        class="fab fa-instagram font_icon"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.linkedin.com/company/infograin-software-solutions/"
+                                    target="_blank"><i class="fab fa-linkedin-in font_icon"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.twitter.com/infograins/" target="_blank"><i
+                                        class="fab fa-twitter font_icon"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.linkedin.com/infograins/" target="_blank"><i
+                                        class="fab fa-telegram-plane font_icon"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="javascript:;" target="_blank"><i class="fab fa-skype font_icon "></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="foot foot2">
+                        <h5 class="foot_heading">Services</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="javascript:;">Python Development</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Block Chain Sevices</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">PHP Website Development</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Native App Development</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Codeigniter Development</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Codeig Development</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Digital Marketing</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Website Redesigning</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Apache Hadoop</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="foot foot3">
+                        <h5 class="foot_heading">Company</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="javascript:;">About us</a>
+                            </li>
+                            <li>
+                                <a href="testimonials.html">Testimonials</a>
+                            </li>
+                            <li>
+                                <a href="career.html">Careers</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Sitemap</a>
+                            </li>
+                            <li>
+                                <a href="contact_us.html">Contact Us</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">IT Training Institute In Indore</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="foot foot4">
+                        <h5 class="foot_heading">Hire Developers</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="javascript:;">Hire Ionic Developers</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Hire Python Developers</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Hire Magento Developers</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Hire Mobile App Developers</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Hire IPhone App Developers</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Hire Magento Developers</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Hire PHP Developers</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Hire Joomla Developers</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Hire WordPress Developers</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="foot_content">
+                <h6>Development Center InfoGrains Software Solutions Pvt. Ltd.</h6>
+                <ul class="list-unstyled">
+                    <li class="foot_address"><i class="fas fa-map-marker-alt font_icon"></i>
+                        <p class="mb-0">Krishna Tower 208, 2nd Floor, OPP. Scheme-140 Pipliyahana Main Road, Indore
+                            (M.P) India 452016</p>
+                    </li>
+                    <li> <i class="fas fa-phone font_icon"></i> <a href="tel:7314258071">917314258071</a> | <a
+                            href="tel:9713406272">9713406272</a> </li>
+                    <li> <i class="far fa-envelope font_icon"></i> <a
+                            href="mailto:info@infograins.com">info@infograins.com</a> | <a
+                            href="mailto:hr@infograins.com">hr@infograins.com</a> </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- live chat box start here -->
+    <div class="live_chat">
+        <input type="checkbox" id="check">
+        <label class="chat-btn" for="check">
+            <!-- <i class="fa fa-commenting-o comment"></i> -->
+            <i class="far fa-comment-dots comment font_icon"></i>
+            <i class="fas fa-times close font_icon"></i>
+        </label>
+        <div class="wrapper">
+            <section class="bot_chat" id="demo">
+                <div class="vertical-align">
+                    <div class="card no-border">
+                        <div id="chat" class="conv-form-wrapper">
+                            <form action="" method="GET" class="hidden">
+                                <select
+                                    data-conv-question="Hello! I'm a bot created from a HTML form. Can I show you some features? (this question comes from a select)"
+                                    name="first-question">
+                                    <option value="yes">Yes</option>
+                                    <option value="sure">Sure!</option>
+                                </select>
+                                <input type="text" name="name"
+                                    data-conv-question="Alright! First, tell me your full name, please.|Okay! Please, tell me your name first.">
+                                <input type="text"
+                                    data-conv-question="Howdy, {name}:0! It's a pleasure to meet you. (note that this question doesn't expect any answer)"
+                                    data-no-answer="true">
+                                <input type="text"
+                                    data-conv-question="This plugin supports multi-select too. Let's see an example."
+                                    data-no-answer="true">
+                                <select name="multi[]" data-conv-question="What kind of music do you like?" multiple>
+                                    <option value="Rock">Rock</option>
+                                    <option value="Pop">Pop</option>
+                                    <option value="Country">Country</option>
+                                    <option value="Classic">Classic</option>
+                                </select>
+                                <select name="programmer" data-callback="storeState"
+                                    data-conv-question="So, are you a programmer? (this question will fork the conversation based on your answer)">
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                                <div data-conv-fork="programmer">
+                                    <div data-conv-case="yes">
+                                        <input type="text" data-conv-question="A fellow programmer! Cool."
+                                            data-no-answer="true">
+                                    </div>
+                                    <div data-conv-case="no">
+                                        <select name="thought"
+                                            data-conv-question="Have you ever thought about learning? Programming is fun!">
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No..</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <input type="text" data-conv-question="convForm also supports regex patterns. Look:"
+                                    data-no-answer="true">
+                                <input data-conv-question="Type in your e-mail"
+                                    data-pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                                    id="email" type="email" name="email" required placeholder="What's your e-mail?">
+                                <input data-conv-question="Now tell me a secret (like a password)" type="password"
+                                    data-minlength="6" id="senha" name="password" required placeholder="password">
+                                <select
+                                    data-conv-question="Selects also support callback functions. For example, try one of these:">
+                                    <option value="google" data-callback="google">Google</option>
+                                    <option value="bing" data-callback="bing">Bing</option>
+                                </select>
+                                <select name="callbackTest"
+                                    data-conv-question="You can do some cool things with callback functions. Want to rollback to the 'programmer' question before?">
+                                    <option value="yes" data-callback="rollback">Yes</option>
+                                    <option value="no" data-callback="restore">No</option>
+                                </select>
+                                <select
+                                    data-conv-question="This is it! If you like me, consider donating! If you need support, contact me. When the form gets to the end, the plugin submits it normally, like you had filled it."
+                                    id="">
+                                    <option value="">Awesome!</option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- live chat box start here -->
+
+    <!-- footer section close here -->
+    
+    <!-- Bootstrap JS file  -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/all.min.js"></script>
+    <!-- owl slider  -->
+    <script src="assets/js/jquery-1.12.0.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <!-- chat bot js -->
+    <script src="assets/js/jquery.convform.js"></script>
+
+    <script src="assets/js/script.js"></script>
+
+    <script>
+        jQuery('.client-slider').owlCarousel({
+            loop: true,
+            margin: 30,
+            nav: true,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 2
+                }
+            }
+        });
+    </script>
+    <script>
+        jQuery(function ($) {
+            convForm = $('#chat').convform({ selectInputStyle: 'disable' });
+            console.log(convForm);
+        });
+    </script>
+</body>
+
+</html>
